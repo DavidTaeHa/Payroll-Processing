@@ -4,7 +4,7 @@
  * @author David Ha, Andrew McAvoy
  */
 public class Profile {
-    private String name; //Lastname, firstname
+    private String name; //Lastname,Firstname
     private String department;//CS, ECE, IT
     private Date dateHired;
 

@@ -21,6 +21,15 @@ public class Parttime extends Employee{
     }
 
     /**
+     * Setter method for hours worked
+     *
+     * @param hoursWorked value to be changed
+     */
+    public void setHoursWorked(int hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    /**
      * Prints instance of this class in the following format
      * profile::payment::PART TIME::hourlyRate
      *
@@ -29,7 +38,8 @@ public class Parttime extends Employee{
     @Override
     public String toString(){
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
-        return super.toString() + "::PART TIME::" + "Hourly Rate " + formatter.format(hourlyRate);
+        return super.toString() + "::PART TIME::" + "Hourly Rate: " + formatter.format(hourlyRate) +
+                "::Hours worked this period: " + hoursWorked;
     }
 
     /**

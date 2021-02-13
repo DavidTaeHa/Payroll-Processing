@@ -92,13 +92,22 @@ public class Company {
     }
 
     /**
-     * Sets number of hours for an employee
+     * Sets number of hours for a parttime employee
      * @param employee employee's hours to be modified
      * @return true if successfully modified; false if employee does not exist
      */
     public boolean setHours(Employee employee) {
-        return true;
-    } //set working hours for a part time
+        int index = find(employee);
+        if(index == INVALID){
+            return false;
+        }
+        
+
+        if(emplist[index] instanceof Parttime){
+            Parttime temp = (Parttime) emplist[index];
+            temp.setHoursWorked();
+        }
+    }
 
     /**
      * Calculates payments for all employees in the container
