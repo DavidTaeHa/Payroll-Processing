@@ -101,7 +101,7 @@ public class Company {
         if(index == INVALID){
             return false;
         }
-        
+
 
         if(emplist[index] instanceof Parttime){
             Parttime temp = (Parttime) emplist[index];
