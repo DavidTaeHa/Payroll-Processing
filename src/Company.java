@@ -21,7 +21,12 @@ public class Company {
      * @return index of the employee in the container; -1 if not found
      */
     private int find(Employee employee) {
-        return -1;
+        for (int index = 0; index < emplist.length; index++) {
+            if ((emplist[index] != null) && emplist[index].equals(employee)) {
+                return index;
+            }
+        }
+        return INVALID;
     }
 
     /**
@@ -36,24 +41,15 @@ public class Company {
     }
 
     /**
-     * Helper method used to determine if the container is full
-     */
-    private boolean isFull() {
-        for (Employee employee : emplist) {
-            if (employee == null) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Adds a new employee to the container
      * @param employee employee to be added
      * @return true if successfully added; false if already exists
      */
     public boolean add(Employee employee) {
-        return true;
+        if(numEmployee == emplist.length){
+            grow();
+        }
+
     } //check the profile before adding
 
     /**
