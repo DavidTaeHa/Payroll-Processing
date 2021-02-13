@@ -39,11 +39,11 @@ public class Management extends Fulltime{
     public String toString(){
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
         switch(managementRole){
-            case 1:
+            case MANAGER:
                 return super.toString() + "::Manager Compensation " + formatter.format(MANAGER_COMP);
-            case 2:
+            case DEPARTMENT_HEAD:
                 return super.toString() + "::DepartmentHead Compensation " + formatter.format(DEPARTMENT_HEAD_COMP);
-            case 3:
+            case DIRECTOR:
                 return super.toString() + "::Director Compensation " + formatter.format(DIRECTOR_COMP);
         }
         return "ERROR";
