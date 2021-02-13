@@ -25,7 +25,6 @@ public class Employee {
      *
      * @return textual representation of this class
      */
-
     @Override
     public String toString(){
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
@@ -35,7 +34,7 @@ public class Employee {
     /**
      * Checks if two employees are equal
      *
-     * @param obj object to be compared
+     * @param obj employee to be compared
      * @return true if equal; false if otherwise
      */
     @Override

@@ -20,12 +20,24 @@ public class Parttime extends Employee{
         this.hoursWorked = 0;
     }
 
+    /**
+     * Prints instance of this class in the following format
+     * profile::PART TIME::hourlyRate
+     *
+     * @return textual representation of this class
+     */
     @Override
     public String toString(){
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
         return super.toString() + "::PART TIME::" + "Hourly Rate " + formatter.format(hourlyRate);
     }
 
+    /**
+     * Checks if two parttime employees are equal
+     *
+     * @param obj parttime employee to be compared
+     * @return true if equal; false if otherwise
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Parttime){

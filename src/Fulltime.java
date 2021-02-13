@@ -18,12 +18,24 @@ public class Fulltime extends Employee{
         this.annualSalary = annualSalary;
     }
 
+    /**
+     * Prints instance of this class in the following format
+     * profile::FULL TIME::annualSalary
+     *
+     * @return textual representation of this class
+     */
     @Override
     public String toString(){
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
         return super.toString() + "::FULL TIME::" + "Annual Salary " + formatter.format(annualSalary);
     }
 
+    /**
+     * Checks if two full-time employees are equal
+     *
+     * @param obj fulltime employee to be compared
+     * @return true if equal; false if otherwise
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Fulltime){
