@@ -20,6 +20,15 @@ public class Employee {
     }
 
     /**
+     * Getter method for profile
+     *
+     * @return profile
+     */
+    public Profile getProfile() {
+        return profile;
+    }
+
+    /**
      * Prints instance of this class in the following format
      * profile::payment
      *

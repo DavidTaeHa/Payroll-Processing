@@ -41,6 +41,21 @@ public class Company {
     }
 
     /**
+     * Helper method to check if an employee profile already exists in the container
+     *
+     * @param employee
+     * @return
+     */
+    private boolean isDuplicate(Employee employee){
+        for(int i = 0; i < emplist.length; i++){
+            if(emplist[i].equals(employee.getProfile().equals(employee.getProfile()))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds a new employee to the container
      * @param employee employee to be added
      * @return true if successfully added; false if already exists
@@ -49,17 +64,29 @@ public class Company {
         if(numEmployee == emplist.length){
             grow();
         }
-
-    } //check the profile before adding
+        if(isDuplicate(employee)){
+            return false;
+        }
+        emplist[numEmployee] = employee;
+        numEmployee++;
+        return true;
+    }
 
     /**
      * Removes employee from container
+     *
      * @param employee employee to be removed
      * @return true if successfully removed; false if employee does not exist
      */
     public boolean remove(Employee employee) {
+        int index = find(employee);
+        if(index == INVALID){
+            return false;
+        }
+        emplist[index] = null;
+        numEmployee--;
         return true;
-    } //maintain the original sequence
+    }
 
     /**
      * Sets number of hours for an employee
