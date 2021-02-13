@@ -28,7 +28,7 @@ public class Employee {
 
     @Override
     public String toString(){
-        DecimalFormat formatter = new DecimalFormat("$0.00");
+        DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
         return profile + "::" + "Payment " + formatter.format(payment);
     }
 

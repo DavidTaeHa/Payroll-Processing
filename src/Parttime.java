@@ -22,7 +22,7 @@ public class Parttime extends Employee{
 
     @Override
     public String toString(){
-        DecimalFormat formatter = new DecimalFormat("$0.00");
+        DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
         return super.toString() + "::PART TIME::" + "Hourly Rate " + formatter.format(hourlyRate);
     }
 
