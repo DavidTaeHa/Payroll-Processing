@@ -4,4 +4,12 @@
  * @author David Ha, Andrew McAvoy
  */
 public class Employee {
+
+    /**
+     * Constructor for employee class
+     */
+    public Employee(){
+
+    }
+
 }
