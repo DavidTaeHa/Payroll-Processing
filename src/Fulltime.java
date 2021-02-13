@@ -20,7 +20,7 @@ public class Fulltime extends Employee{
 
     /**
      * Prints instance of this class in the following format
-     * profile::FULL TIME::annualSalary
+     * profile::payment::FULL TIME::annualSalary
      *
      * @return textual representation of this class
      */

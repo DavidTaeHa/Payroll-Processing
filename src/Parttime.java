@@ -22,7 +22,7 @@ public class Parttime extends Employee{
 
     /**
      * Prints instance of this class in the following format
-     * profile::PART TIME::hourlyRate
+     * profile::payment::PART TIME::hourlyRate
      *
      * @return textual representation of this class
      */

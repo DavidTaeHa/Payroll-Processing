@@ -15,7 +15,9 @@ public class RunProject2 {
         Fulltime fulltime2 = new Fulltime(profile, 85000);
         Parttime parttime = new Parttime(profile,43.9);
         Parttime parttime2 = new Parttime(profile,43.9);
-        System.out.println(parttime.equals(parttime2));
-        System.out.println(parttime);
+        Management management = new Management(profile, 85000, 1);
+        Management management2 = new Management(profile, 85000, 1);
+        System.out.println(management.equals(management2));
+        System.out.println(management);
     }
 }
