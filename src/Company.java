@@ -85,6 +85,9 @@ public class Company {
         }
         emplist[index] = null;
         numEmployee--;
+        for (int i = index; i < (emplist.length - 1); i++) {
+            emplist[i] = emplist[i + 1];
+        }
         return true;
     }
 
