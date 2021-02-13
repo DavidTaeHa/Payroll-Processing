@@ -9,6 +9,15 @@ public class Profile {
     private Date dateHired;
 
     /**
+     * Constructor for profile
+     */
+    public Profile(String name, String department, Date dateHired){
+        this.name = name;
+        this.department = department;
+        this.dateHired = dateHired;
+    }
+
+    /**
      * Prints instance of this class in the following format
      * name::department::dateHired
      * @return textual representation of profile

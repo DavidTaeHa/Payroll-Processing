@@ -26,7 +26,7 @@ public class Employee {
 
     @Override
     public String toString(){
-        DecimalFormat formatter = new DecimalFormat("$#.##");
+        DecimalFormat formatter = new DecimalFormat("$0.00");
         return profile + "::" + formatter.format(payment);
     }
 
@@ -40,7 +40,7 @@ public class Employee {
     public boolean equals(Object obj){
         if(obj instanceof Employee){
             Employee temp = (Employee) obj;
-            return ((profile.equals(temp)) && (payment == temp.payment));
+            return ((profile.equals(temp.profile)) && (payment == temp.payment));
         }
         return false;
     }
