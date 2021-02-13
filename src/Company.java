@@ -13,7 +13,7 @@ public class Company {
      * @return index of the employee in the container; -1 if not found
      */
     private int find(Employee employee) {
-
+        return -1;
     }
 
     /**
@@ -29,7 +29,7 @@ public class Company {
      * @return true if successfully added; false if already exists
      */
     public boolean add(Employee employee) {
-
+        return true;
     } //check the profile before adding
 
     /**
@@ -38,7 +38,7 @@ public class Company {
      * @return true if successfully removed; false if employee does not exist
      */
     public boolean remove(Employee employee) {
-
+        return true;
     } //maintain the original sequence
 
     /**
@@ -47,7 +47,7 @@ public class Company {
      * @return true if successfully modified; false if employee does not exist
      */
     public boolean setHours(Employee employee) {
-
+        return true;
     } //set working hours for a part time
 
     /**
