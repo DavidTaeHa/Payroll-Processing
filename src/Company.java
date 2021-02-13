@@ -7,6 +7,14 @@ public class Company {
     private Employee[] emplist;
     private int numEmployee;
 
+    final static int LIST_INCREMENT_VALUE = 4;
+    final static int INVALID = -1;
+
+    public Company(){
+        emplist = new Employee[LIST_INCREMENT_VALUE];
+        numEmployee = 0;
+    }
+
     /**
      * Helper method to help find an employee in the employee container
      * @param employee Employee to be found
@@ -20,7 +28,23 @@ public class Company {
      * Helper method to increase capacity of array if the container if full
      */
     private void grow() {
+        Employee[] temp = new Employee[emplist.length + LIST_INCREMENT_VALUE];
+        for (int i = 0; i < emplist.length; i++) {
+            temp[i] = emplist[i];
+        }
+        emplist = temp;
+    }
 
+    /**
+     * Helper method used to determine if the container is full
+     */
+    private boolean isFull() {
+        for (Employee employee : emplist) {
+            if (employee == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
