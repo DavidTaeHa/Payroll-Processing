@@ -5,7 +5,7 @@
  */
 public class Profile {
     private String name; //Lastname, firstname
-    private String department;
+    private String department;//CS, ECE, IT
     private Date dateHired;
 
     /**

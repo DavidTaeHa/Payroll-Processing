@@ -11,6 +11,8 @@ public class Employee {
 
     /**
      * Constructor for employee class
+     *
+     * @param profile profile for the employee
      */
     public Employee(Profile profile){
         this.profile = profile;
@@ -27,7 +29,7 @@ public class Employee {
     @Override
     public String toString(){
         DecimalFormat formatter = new DecimalFormat("$0.00");
-        return profile + "::" + formatter.format(payment);
+        return profile + "::" + "Payment " + formatter.format(payment);
     }
 
     /**

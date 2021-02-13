@@ -11,6 +11,9 @@ public class RunProject2 {
         Profile profile2 = new Profile("Bob","CS",date2);
         Employee employee = new Employee(profile);
         Employee employee2 = new Employee(profile2);
-        System.out.println(employee.equals(employee2));
+        Fulltime fulltime = new Fulltime(profile, 85000);
+        Fulltime fulltime2 = new Fulltime(profile, 85000);
+        System.out.println(fulltime.equals(fulltime2));
+        System.out.println(fulltime);
     }
 }
