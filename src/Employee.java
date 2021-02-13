@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /**
  * This class represents an employee at a company and defines common attributes for all employee types
  *
@@ -12,6 +14,7 @@ public class Employee {
      */
     public Employee(Profile profile){
         this.profile = profile;
+        this.payment = 0;
     }
 
     /**
@@ -20,10 +23,11 @@ public class Employee {
      *
      * @return textual representation of this class
      */
-    
+
     @Override
     public String toString(){
-
+        DecimalFormat formatter = new DecimalFormat("$#.##");
+        return profile + "::" + formatter.format(payment);
     }
 
     /**
@@ -34,6 +38,10 @@ public class Employee {
      */
     @Override
     public boolean equals(Object obj){
-
+        if(obj instanceof Employee){
+            Employee temp = (Employee) obj;
+            return ((profile.equals(temp)) && (payment == temp.payment));
+        }
+        return false;
     }
 }
