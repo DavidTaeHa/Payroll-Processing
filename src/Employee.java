@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
  *
  * @author David Ha, Andrew McAvoy
  */
-public class Employee {
+public abstract class Employee {
     private Profile profile;
     private double payment;
 
@@ -20,6 +20,15 @@ public class Employee {
     }
 
     /**
+     * Setter method for payment
+     *
+     * @param payment value to be changed
+     */
+    public void setPayment(double payment) {
+        this.payment = payment;
+    }
+
+    /**
      * Getter method for profile
      *
      * @return profile
@@ -27,6 +36,11 @@ public class Employee {
     public Profile getProfile() {
         return profile;
     }
+
+    /**
+     * Abstract method for the subclasses to implement for calculating payment
+     */
+    public abstract void calculatePayment();
 
     /**
      * Prints instance of this class in the following format

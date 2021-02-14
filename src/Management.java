@@ -30,6 +30,21 @@ public class Management extends Fulltime{
     }
 
     /**
+     * Calculates payment of the employee
+     */
+    @Override
+    public void calculatePayment(){
+        switch(managementRole){
+            case MANAGER:
+                super.setPayment(super.getAnnualSalary()/26 + MANAGER_COMP);
+            case DEPARTMENT_HEAD:
+                super.setPayment(super.getAnnualSalary()/26 + DEPARTMENT_HEAD_COMP);;
+            case DIRECTOR:
+                super.setPayment(super.getAnnualSalary()/26 + DIRECTOR_COMP);;
+        }
+    }
+
+    /**
      * Prints instance of this class in the following format
      * profile::payment::FULL TIME::annualSalary::Role Compensation
      *

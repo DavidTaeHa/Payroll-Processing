@@ -190,14 +190,4 @@ public class Date implements Comparable<Date>{
         }
         return dateToString + year;
     }
-
-    /**
-     * This method is used as testbed method for the Date class
-     * 
-     */
-    public static void main(String[] args) {
-        Date date1 = new Date("02/26/2018");
-        Date date2 = new Date("03/25/2018");
-        System.out.println(date1.compareTo(date2));
-    }
 }

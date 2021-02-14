@@ -96,16 +96,19 @@ public class Company {
      * @param employee employee's hours to be modified
      * @return true if successfully modified; false if employee does not exist
      */
-    public boolean setHours(Employee employee) {
+    public boolean setHours(Employee employee, int hours) {
         int index = find(employee);
         if(index == INVALID){
             return false;
         }
-
-
-        if(emplist[index] instanceof Parttime){
+        if(employee instanceof Parttime) {
             Parttime temp = (Parttime) emplist[index];
-            temp.setHoursWorked();
+            temp.setHoursWorked(hours);
+            emplist[index] = temp;
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -113,15 +116,21 @@ public class Company {
      * Calculates payments for all employees in the container
      */
     public void processPayments() {
-
-    } //process payments for all employees
+        for(int i = 0; i < emplist.length; i++){
+            if(emplist[i] != null){
+                emplist[i].calculatePayment();
+            }
+        }
+    }
 
     /**
      * Prints earning statements for all employees
      */
     public void print() {
-
-    } //print earning statements for all employees
+        for(Employee employee : emplist){
+            System.out.println(employee);
+        }
+    }
 
     /**
      * Prints earning statements by department
@@ -134,6 +143,25 @@ public class Company {
      * Prints earning statements by date hired
      */
     public void printByDate() {
-
-    } //print earning statements by date hired
+        int min = INVALID;
+        for (int i = 0; i < emplist.length; i++) {
+            for (int j = i; j < emplist.length; j++) {
+                if (min == INVALID) {
+                    min = j;
+                    continue;
+                }
+                if (emplist[j] == null) {
+                    continue;
+                }
+                if(emplist[j].getProfile().getDateHired().compareTo(emplist[min].getProfile().getDateHired()) == 1){
+                 min = j;
+                }
+            }
+            Employee temp = emplist[i];
+            emplist[i] = emplist[min];
+            emplist[min] = temp;
+            min = INVALID;
+        }
+        print();
+    }
 }

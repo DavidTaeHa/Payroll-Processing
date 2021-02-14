@@ -21,6 +21,20 @@ public class Parttime extends Employee{
     }
 
     /**
+     * Calculates payment of the employee
+     */
+    @Override
+    public void calculatePayment(){
+        if(hoursWorked > 80){
+            double overtimePay = (hoursWorked - 80) * (1.5 * hourlyRate);
+            super.setPayment((hoursWorked * hourlyRate) + overtimePay);
+        }
+        else{
+            super.setPayment(hoursWorked * hourlyRate);
+        }
+    }
+
+    /**
      * Setter method for hours worked
      *
      * @param hoursWorked value to be changed

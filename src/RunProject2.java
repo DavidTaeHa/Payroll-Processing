@@ -9,15 +9,16 @@ public class RunProject2 {
         Date date2 = new Date("11/10/2019");
         Profile profile = new Profile("Bob","CS",date);
         Profile profile2 = new Profile("Bob","CS",date2);
-        Employee employee = new Employee(profile);
-        Employee employee2 = new Employee(profile2);
         Fulltime fulltime = new Fulltime(profile, 85000);
         Fulltime fulltime2 = new Fulltime(profile, 85000);
         Parttime parttime = new Parttime(profile,43.9);
         Parttime parttime2 = new Parttime(profile,43.9);
         Management management = new Management(profile, 85000, 1);
         Management management2 = new Management(profile, 85000, 1);
-        System.out.println(management.equals(management2));
-        System.out.println(management);
+        Employee employee = new Fulltime(profile, 85000);
+        employee.calculatePayment();
+        System.out.println(employee);
+        //System.out.println(management.equals(management2));
+        //System.out.println(management);
     }
 }

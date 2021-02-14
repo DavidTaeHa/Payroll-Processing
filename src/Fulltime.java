@@ -19,6 +19,23 @@ public class Fulltime extends Employee{
     }
 
     /**
+     * Getter method for annual salary
+     *
+     * @return annualSalary
+     */
+    public double getAnnualSalary() {
+        return annualSalary;
+    }
+
+    /**
+     * Calculates payment of the employee
+     */
+    @Override
+    public void calculatePayment(){
+        super.setPayment(annualSalary/26.0);
+    }
+
+    /**
      * Prints instance of this class in the following format
      * profile::payment::FULL TIME::annualSalary
      *

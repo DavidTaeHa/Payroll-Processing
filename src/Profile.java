@@ -18,6 +18,15 @@ public class Profile {
     }
 
     /**
+     * Getter method for dateHired
+     *
+     * @return dateHired
+     */
+    public Date getDateHired() {
+        return dateHired;
+    }
+
+    /**
      * Prints instance of this class in the following format
      * name::department::dateHired
      * @return textual representation of profile
