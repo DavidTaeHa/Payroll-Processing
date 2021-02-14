@@ -4,5 +4,5 @@
  * @author David Ha, Andrew McAvoy
  */
 public class PayrollProcessing {
-    
+
 }
