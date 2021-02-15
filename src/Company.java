@@ -48,7 +48,7 @@ public class Company {
      */
     private boolean isDuplicate(Employee employee){
         for(int i = 0; i < emplist.length; i++){
-            if(emplist[i].equals(employee.getProfile().equals(employee.getProfile()))){
+            if( (emplist[i] != null) && (emplist[i].getProfile().equals(employee.getProfile())) ){
                 return true;
             }
         }
@@ -86,7 +86,9 @@ public class Company {
         emplist[index] = null;
         numEmployee--;
         for (int i = index; i < (emplist.length - 1); i++) {
+            Employee temp = emplist[i];
             emplist[i] = emplist[i + 1];
+            emplist[i + 1] = temp;
         }
         return true;
     }
@@ -107,9 +109,7 @@ public class Company {
             emplist[index] = temp;
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -153,7 +153,7 @@ public class Company {
                 if (emplist[j] == null) {
                     continue;
                 }
-                if(emplist[j].getProfile().getDateHired().compareTo(emplist[min].getProfile().getDateHired()) == 1){
+                if(emplist[j].getProfile().getDateHired().compareTo(emplist[min].getProfile().getDateHired()) == -1){
                  min = j;
                 }
             }
