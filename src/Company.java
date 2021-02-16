@@ -43,8 +43,8 @@ public class Company {
     /**
      * Helper method to check if an employee profile already exists in the container
      *
-     * @param employee
-     * @return
+     * @param employee value to check if a duplicate exisrs
+     * @return true if duplicate; false if otherwise
      */
     private boolean isDuplicate(Employee employee){
         for(int i = 0; i < emplist.length; i++){
