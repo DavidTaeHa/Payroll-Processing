@@ -44,6 +44,15 @@ public class Parttime extends Employee{
     }
 
     /**
+     * Getter method for hours worked
+     *
+     * @return hoursWorked
+     */
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    /**
      * Prints instance of this class in the following format
      * profile::payment::PART TIME::hourlyRate
      *

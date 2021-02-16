@@ -98,14 +98,14 @@ public class Company {
      * @param employee employee's hours to be modified
      * @return true if successfully modified; false if employee does not exist
      */
-    public boolean setHours(Employee employee, int hours) {
+    public boolean setHours(Employee employee) {
         int index = find(employee);
         if(index == INVALID){
             return false;
         }
         if(employee instanceof Parttime) {
             Parttime temp = (Parttime) emplist[index];
-            temp.setHoursWorked(hours);
+            temp.setHoursWorked(((Parttime) employee).getHoursWorked());
             emplist[index] = temp;
             return true;
         }
