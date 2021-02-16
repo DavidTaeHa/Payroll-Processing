@@ -70,7 +70,16 @@ public class Date implements Comparable<Date>{
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
-
+        int currentMonth = calendar.get(Calendar.MONTH) + 1;
+        int currentDay = calendar.get(Calendar.DATE);
+        if((year == currentYear) && (month > currentMonth)){
+            return false;
+        }
+        else if((year == currentYear) && (currentMonth == month)){
+            if(day > currentDay){
+                return false;
+            }
+        }
         if ((year < YEAR_LOWER_LIMIT) || (year > currentYear)) {
             return false;
         }
