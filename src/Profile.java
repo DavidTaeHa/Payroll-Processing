@@ -18,9 +18,18 @@ public class Profile {
     }
 
     /**
+     * Getter method for department
+     *
+     * @return department value
+     */
+    public String getDepartment() {
+        return department;
+    }
+
+    /**
      * Getter method for dateHired
      *
-     * @return dateHired
+     * @return dateHired value
      */
     public Date getDateHired() {
         return dateHired;

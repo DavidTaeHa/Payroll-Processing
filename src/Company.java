@@ -134,8 +134,27 @@ public class Company {
      * Prints earning statements by department
      */
     public void printByDepartment() {
-
-    } //print earning statements by department
+        int min = INVALID;
+        for(int i = 0; i < emplist.length; i++){
+            for(int j = i; j < emplist.length; j++){
+                if(min == INVALID){
+                    min = j;
+                    continue;
+                }
+                if(emplist[j] == null){
+                    continue;
+                }
+                if(emplist[j].getProfile().getDepartment().compareTo(emplist[min].getProfile().getDepartment()) < 0){
+                    min = j;
+                }
+            }
+            Employee temp = emplist[i];
+            emplist[i] = emplist[min];
+            emplist[min] = temp;
+            min = INVALID;
+        }
+        print();
+    }
 
     /**
      * Prints earning statements by date hired
