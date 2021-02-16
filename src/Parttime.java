@@ -26,8 +26,9 @@ public class Parttime extends Employee{
     @Override
     public void calculatePayment(){
         if(hoursWorked > 80){
-            double overtimePay = (hoursWorked - 80) * (1.5 * hourlyRate);
-            super.setPayment((hoursWorked * hourlyRate) + overtimePay);
+            int overtimeHours = hoursWorked - 80;
+            double overtimePay = (overtimeHours) * (1.5 * hourlyRate);
+            super.setPayment((hoursWorked - overtimeHours) * hourlyRate + overtimePay);
         }
         else{
             super.setPayment(hoursWorked * hourlyRate);

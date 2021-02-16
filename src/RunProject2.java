@@ -17,7 +17,10 @@ public class RunProject2 {
         Management management2 = new Management(profile, 85000, 1);
         Employee employee = new Fulltime(profile, 85000);
         employee.calculatePayment();
+        parttime.setHoursWorked(90);
+        parttime.calculatePayment();
         System.out.println(employee);
+        System.out.println(parttime);
         //System.out.println(management.equals(management2));
         //System.out.println(management);
     }
