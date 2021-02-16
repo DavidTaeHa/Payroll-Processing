@@ -61,14 +61,14 @@ public class Company {
      * @return true if successfully added; false if already exists
      */
     public boolean add(Employee employee) {
-        if(numEmployee == emplist.length){
-            grow();
-        }
         if(isDuplicate(employee)){
             return false;
         }
         emplist[numEmployee] = employee;
         numEmployee++;
+        if(numEmployee == emplist.length){
+            grow();
+        }
         return true;
     }
 
@@ -86,9 +86,7 @@ public class Company {
         emplist[index] = null;
         numEmployee--;
         for (int i = index; i < (emplist.length - 1); i++) {
-            Employee temp = emplist[i];
             emplist[i] = emplist[i + 1];
-            emplist[i + 1] = temp;
         }
         return true;
     }
