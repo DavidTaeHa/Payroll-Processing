@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.Exception;
 
 /**
  * This class will handle all user input and output
@@ -22,5 +23,32 @@ public class PayrollProcessing {
         Company company = new Company();
         Scanner scan = new Scanner(System.in);
         System.out.println("Payroll Processing Session Running.");
+        while(payrollProcessingSession){
+            String input = scan.nextLine();
+            switch(input){
+                case "AP":
+                    //add parttime
+                case "AF":
+                    //add fulltime
+                case "AM":
+                    //add manager
+                case "R":
+                    //remove
+                case "C":
+                    //calculate payment
+                case "S":
+                    //set hours
+                case "PA":
+                    //print all
+                case "PH":
+                    //print date hired
+                case "PD":
+                    //print department
+                case "Q":
+                    payrollProcessingSession = false;
+                default:
+                    
+            }
+        }
     }
 }
