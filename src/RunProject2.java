@@ -5,27 +5,6 @@
  */
 public class RunProject2 {
     public static void main(String[] args) {
-        Date date = new Date();
-        Date date2 = new Date("11/10/2019");
-        Date date3 = new Date("02/17/2021");
-        System.out.println(date3.isValid());
-        Profile profile = new Profile("Bob","CS",date);
-        Profile profile2 = new Profile("Bob","ECE",date2);
-        Profile profile3 = new Profile("Bob","IT",date2);
-        System.out.println(profile.getDepartment().compareTo(profile3.getDepartment()));
-        Fulltime fulltime = new Fulltime(profile, 85000);
-        Fulltime fulltime2 = new Fulltime(profile, 85000);
-        Parttime parttime = new Parttime(profile,43.9);
-        Parttime parttime2 = new Parttime(profile,43.9);
-        Management management = new Management(profile, 85000, 1);
-        Management management2 = new Management(profile, 85000, 1);
-        Employee employee = new Fulltime(profile, 85000);
-        employee.calculatePayment();
-        parttime.setHoursWorked(90);
-        parttime.calculatePayment();
-        System.out.println(employee);
-        System.out.println(parttime);
-        //System.out.println(management.equals(management2));
-        //System.out.println(management);
+        new PayrollProcessing().run();
     }
 }
