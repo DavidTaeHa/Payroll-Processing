@@ -31,37 +31,36 @@ public class PayrollProcessing {
     /**
      * Constructor for PayrollProcessing class
      */
-    public PayrollProcessing(){
+    public PayrollProcessing() {
         payrollProcessingSession = true;
     }
 
     /**
      * Private method to check if the length of the array of parameters is correct
      */
-    private void checkLength(int expectedLength, int actualLength){
-        if(actualLength != expectedLength){
-            throw new InputMismatchException("Invalid Command!");
+    private void checkLength(int expectedLength, int actualLength) {
+        if (actualLength != expectedLength) {
+            throw new ArrayIndexOutOfBoundsException("Invalid Command!");
         }
     }
 
     /**
      * Private method to aid in adding a new fulltime or parttime to the company container
      */
-    private void addCommand(String name, String department, String dateHired, String pay, int role, Company company){
+    private void addCommand(String name, String department, String dateHired, String pay, int role, Company company) {
         Date date = new Date(dateHired);
-        if(!date.isValid()){
+        if (!date.isValid()) {
             throw new InputMismatchException(dateHired + " is not a valid date!");
         }
-        if(!department.equals("CS") && !department.equals("ECE") && !department.equals("IT")){
+        if (!department.equals("CS") && !department.equals("ECE") && !department.equals("IT")) {
             throw new InputMismatchException("Invalid department code!");
         }
         Profile profile = new Profile(name, department, date);
-        if(role == PARTTIME){
-            Parttime parttime = new Parttime (profile, Double.parseDouble(pay));
+        if (role == PARTTIME) {
+            Parttime parttime = new Parttime(profile, Double.parseDouble(pay));
             company.add(parttime);
-        }
-        else if(role == FULLTIME){
-            Fulltime fulltime = new Fulltime (profile, Double.parseDouble(pay));
+        } else if (role == FULLTIME) {
+            Fulltime fulltime = new Fulltime(profile, Double.parseDouble(pay));
             company.add(fulltime);
         }
         System.out.println("Employee added.");
@@ -70,15 +69,15 @@ public class PayrollProcessing {
     /**
      * Private method to aid in adding new management to the company container
      */
-    private void addCommand(String name, String department, String dateHired, String salary, String managementRole, Company company){
+    private void addCommand(String name, String department, String dateHired, String salary, String managementRole, Company company) {
         Date date = new Date(dateHired);
-        if(!date.isValid()){
+        if (!date.isValid()) {
             throw new InputMismatchException(dateHired + " is not a valid date!");
         }
-        if(!department.equals("CS") && !department.equals("ECE") && !department.equals("IT")){
+        if (!department.equals("CS") && !department.equals("ECE") && !department.equals("IT")) {
             throw new InputMismatchException("Invalid department code!");
         }
-        if(Integer.parseInt(managementRole) > 3 || Integer.parseInt(managementRole) < 0){
+        if (Integer.parseInt(managementRole) > 3 || Integer.parseInt(managementRole) < 0) {
             throw new InputMismatchException("Invalid management code!");
         }
         Profile profile = new Profile(name, department, date);
@@ -90,15 +89,15 @@ public class PayrollProcessing {
     /**
      * Handles all user input and output
      */
-    public void run(){
+    public void run() {
         Company company = new Company();
         Scanner scan = new Scanner(System.in);
         System.out.println("Payroll Processing Session Running.");
-        while(payrollProcessingSession){
+        while (payrollProcessingSession) {
             String input = scan.nextLine();
             String[] parameters = input.split(" ");
             String command = parameters[FIRST_PARAMETER];
-            switch(command){
+            switch (command) {
                 case "AP":
                     checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
                     addCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER], parameters[FOURTH_PARAMETER],
@@ -129,7 +128,7 @@ public class PayrollProcessing {
                 case "Q":
                     payrollProcessingSession = false;
                 default:
-                    
+
             }
         }
     }
