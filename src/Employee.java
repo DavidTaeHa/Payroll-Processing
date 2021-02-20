@@ -38,6 +38,15 @@ public class Employee {
     }
 
     /**
+     * Getter method for payment
+     *
+     * @return payment
+     */
+    public double getPayment() {
+        return payment;
+    }
+
+    /**
      * Method for the subclasses to implement for calculating payment
      */
     public void calculatePayment(){
