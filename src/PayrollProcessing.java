@@ -11,7 +11,6 @@ public class PayrollProcessing {
     private boolean payrollProcessingSession;
 
     final static int MANAGER = 1;
-    final static int DEPARTMENT_HEAD = 2;
     final static int DIRECTOR = 3;
     final static int PARTTIME = 4;
     final static int FULLTIME = 5;
@@ -104,7 +103,7 @@ public class PayrollProcessing {
         if (!department.equals("CS") && !department.equals("ECE") && !department.equals("IT")) {
             throw new InputMismatchException("Invalid department code!");
         }
-        if (Integer.parseInt(managementRole) > 3 || Integer.parseInt(managementRole) < 0) {
+        if (Integer.parseInt(managementRole) > DIRECTOR || Integer.parseInt(managementRole) < MANAGER) {
             throw new InputMismatchException("Invalid management code!");
         }
         Profile profile = new Profile(name, department, date);
@@ -118,7 +117,53 @@ public class PayrollProcessing {
     }
 
     /**
-     * Private method to aid in printing elements in the container
+     * Helper method to aid in removing an employee from the container
+     * @param name Name of the employee
+     * @param department Department associated with the employee
+     * @param dateHired Date that the employee is hired
+     * @param company Container full of employees
+     */
+    private void removeCommand(String name, String department, String dateHired, Company company){
+        Date date = new Date(dateHired);
+        Profile profile = new Profile(name, department, date);
+        Employee employee = new Employee(profile);
+        if(!company.remove(employee)){
+            System.out.println("Employee doesn’t exist.");
+        }
+        else{
+            System.out.println("Employee removed.");
+        }
+    }
+
+    /**
+     * Helper method to aid in setting hours of parttime employees
+     * @param name Name of the employee
+     * @param department Department associated with the employee
+     * @param dateHired Date tthat the employee is hired
+     * @param hours Hours that the employee has worked
+     * @param company Container full of employees
+     */
+    private void setHoursCommand(String name, String department, String dateHired, String hours, Company company){
+        if(Integer.parseInt(hours) < 0){
+            throw new InputMismatchException("Working hours cannot be negative.");
+        }
+        else if (Integer.parseInt(hours) > 100){
+            throw new InputMismatchException("Invalid Hours: over 100");
+        }
+        Date date = new Date(dateHired);
+        Profile profile = new Profile(name, department, date);
+        Parttime parttime = new Parttime(profile, 0.0);
+        parttime.setHoursWorked(Integer.parseInt(hours));
+        if(!company.setHours(parttime)){
+            System.out.println("Employee doesn’t exist.");
+        }
+        else{
+            System.out.println("Working hours set.");
+        }
+    }
+
+    /**
+     * Helper method to aid in printing elements in the container
      *
      * @param printType Different ways to print the elements in the container
      */
@@ -165,13 +210,19 @@ public class PayrollProcessing {
                             parameters[FIFTH_PARAMETER], parameters[SIXTH_PARAMETER], company);
                     break;
                 case "R":
-                    //remove
+                    checkLength(LENGTH_REQUIREMENT_FOUR, parameters.length);
+                    removeCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER],
+                            parameters[FOURTH_PARAMETER], company);
+                    break;
                 case "C":
                     company.processPayments();
                     System.out.println("Calculation of employee payments is done.");
                     break;
                 case "S":
-                    //set hours
+                    checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
+                    setHoursCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER],
+                            parameters[FOURTH_PARAMETER], parameters[FIFTH_PARAMETER], company);
+                    break;
                 case "PA":
                     printCommand(PRINT_ALL, company);
                     break;

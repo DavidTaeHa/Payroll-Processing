@@ -34,7 +34,7 @@ public class Company {
      */
     private int find(Employee employee) {
         for (int index = 0; index < emplist.length; index++) {
-            if ((emplist[index] != null) && emplist[index].equals(employee)) {
+            if ((emplist[index] != null) && emplist[index].getProfile().equals(employee.getProfile())) {
                 return index;
             }
         }
