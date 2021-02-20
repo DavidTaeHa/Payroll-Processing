@@ -37,10 +37,13 @@ public class Management extends Fulltime{
         switch(managementRole){
             case MANAGER:
                 super.setPayment(super.getAnnualSalary()/26 + MANAGER_COMP);
+                break;
             case DEPARTMENT_HEAD:
-                super.setPayment(super.getAnnualSalary()/26 + DEPARTMENT_HEAD_COMP);;
+                super.setPayment(super.getAnnualSalary()/26 + DEPARTMENT_HEAD_COMP);
+                break;
             case DIRECTOR:
-                super.setPayment(super.getAnnualSalary()/26 + DIRECTOR_COMP);;
+                super.setPayment(super.getAnnualSalary()/26 + DIRECTOR_COMP);
+                break;
         }
     }
 

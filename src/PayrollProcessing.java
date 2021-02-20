@@ -15,6 +15,9 @@ public class PayrollProcessing {
     final static int DIRECTOR = 3;
     final static int PARTTIME = 4;
     final static int FULLTIME = 5;
+    final static int PRINT_ALL = 1;
+    final static int PRINT_DATE = 2;
+    final static int PRINT_DEPARTMENT = 3;
 
     /**
      * Constants used for getting parameters from the array of inputs
@@ -25,6 +28,7 @@ public class PayrollProcessing {
     final static int FOURTH_PARAMETER = 3;
     final static int FIFTH_PARAMETER = 4;
     final static int SIXTH_PARAMETER = 5;
+    final static int LENGTH_REQUIREMENT_FOUR = 4;
     final static int LENGTH_REQUIREMENT_FIVE = 5;
     final static int LENGTH_REQUIREMENT_SIX = 6;
 
@@ -36,7 +40,10 @@ public class PayrollProcessing {
     }
 
     /**
-     * Private method to check if the length of the array of parameters is correct
+     * Helper method to check if the length of the array of parameters is correct
+     *
+     * @param expectedLength Expected length of the input command
+     * @param actualLength   Actual length of the input command
      */
     private void checkLength(int expectedLength, int actualLength) {
         if (actualLength != expectedLength) {
@@ -45,7 +52,14 @@ public class PayrollProcessing {
     }
 
     /**
-     * Private method to aid in adding a new fulltime or parttime to the company container
+     * Helper method to aid in adding a new fulltime or parttime to the company container
+     *
+     * @param name       Name of the employee
+     * @param department Department associated with the employee
+     * @param dateHired  Date that the employee is hired
+     * @param pay        Annual salary or hourly rate of the employee
+     * @param role       Number denoting Fulltime or Parttime status of the employee
+     * @param company    Container full of employees
      */
     private void addCommand(String name, String department, String dateHired, String pay, int role, Company company) {
         Date date = new Date(dateHired);
@@ -58,16 +72,29 @@ public class PayrollProcessing {
         Profile profile = new Profile(name, department, date);
         if (role == PARTTIME) {
             Parttime parttime = new Parttime(profile, Double.parseDouble(pay));
-            company.add(parttime);
+            if(!company.add(parttime)){
+                System.out.println("Employee is already in the list");
+                return;
+            }
         } else if (role == FULLTIME) {
             Fulltime fulltime = new Fulltime(profile, Double.parseDouble(pay));
-            company.add(fulltime);
+            if(!company.add(fulltime)){
+                System.out.println("Employee is already in the list");
+                return;
+            }
         }
         System.out.println("Employee added.");
     }
 
     /**
-     * Private method to aid in adding new management to the company container
+     * Helper method to aid in adding new management to the company container
+     *
+     * @param name           Name of the employee
+     * @param department     Department associated with the employee
+     * @param dateHired      Date that the employee is hired
+     * @param salary         Annual salary of the employee
+     * @param managementRole Number denoting management role of the employee
+     * @param company        Container full of employees
      */
     private void addCommand(String name, String department, String dateHired, String salary, String managementRole, Company company) {
         Date date = new Date(dateHired);
@@ -82,8 +109,32 @@ public class PayrollProcessing {
         }
         Profile profile = new Profile(name, department, date);
         Management management = new Management(profile, Double.parseDouble(salary), Integer.parseInt(managementRole));
-        company.add(management);
-        System.out.println("Employee added.");
+        if(!company.add(management)){
+            System.out.println("Employee is already in the list");
+        }
+        else{
+            System.out.println("Employee added.");
+        }
+    }
+
+    /**
+     * Private method to aid in printing elements in the container
+     *
+     * @param printType Different ways to print the elements in the container
+     */
+    public void printCommand(int printType, Company company) {
+        if (company.getNumEmployee() == 0) {
+            System.out.println("Employee database is empty.");
+        } else if (printType == PRINT_ALL) {
+            System.out.println("--Printing earning statements for all employees--");
+            company.print();
+        } else if (printType == PRINT_DATE) {
+            System.out.println("--Printing earning statements by date hired--");
+            company.printByDate();
+        } else if (printType == PRINT_DEPARTMENT) {
+            System.out.println("--Printing earning statements by department--");
+            company.printByDepartment();
+        }
     }
 
     /**
@@ -116,20 +167,27 @@ public class PayrollProcessing {
                 case "R":
                     //remove
                 case "C":
-                    //calculate payment
+                    company.processPayments();
+                    System.out.println("Calculation of employee payments is done.");
+                    break;
                 case "S":
                     //set hours
                 case "PA":
-                    //print all
+                    printCommand(PRINT_ALL, company);
+                    break;
                 case "PH":
-                    //print date hired
+                    printCommand(PRINT_DATE, company);
+                    break;
                 case "PD":
-                    //print department
+                    printCommand(PRINT_DEPARTMENT, company);
+                    break;
                 case "Q":
                     payrollProcessingSession = false;
                 default:
 
             }
         }
+        System.out.println("Payroll Processing Session ended.");
+        scan.close();
     }
 }

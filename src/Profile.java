@@ -54,7 +54,8 @@ public class Profile {
     public boolean equals(Object obj){
         if(obj instanceof Profile){
             Profile temp = (Profile) obj;
-            return ((name == temp.name) && (department == temp.department) && (dateHired == temp.dateHired));
+            return ((name.equals(temp.name)) && (department.equals(temp.department))
+                    && (dateHired.compareTo(temp.dateHired) == 0));
         }
         return false;
     }
