@@ -53,5 +53,24 @@ class CompanyTest {
 
     @org.junit.jupiter.api.Test
     void setHours() {
+        Company company = new Company();
+        Profile person1 = new Profile("Doe,John", "CS", new Date());
+        Profile person2 = new Profile("Smith,Mary", "ECE", new Date());
+        Employee employee1 = new Fulltime(person1, 30000);
+        Employee employee2 = new Parttime(person2, 12.50);
+
+        //Test setting hours on empty list
+        assertFalse(company.setHours(employee2));
+
+        //Test setting hours on non-existing employee
+        company.add(employee1);
+        assertFalse(company.setHours(employee2));
+
+        //Test setting hours on full time employee
+        assertFalse(company.setHours(employee1));
+
+        //Test setting hours on part time employee
+        company.add(employee2);
+        assertTrue(company.setHours(employee2));
     }
 }
