@@ -6,21 +6,21 @@ import java.text.DecimalFormat;
  *
  * @author David Ha, Andrew McAvoy
  */
-public class Management extends Fulltime{
+public class Management extends Fulltime {
     private int managementRole;
 
     final static int MANAGER = 1;
     final static int DEPARTMENT_HEAD = 2;
     final static int DIRECTOR = 3;
 
-    final static double MANAGER_COMP = 5000.0/26;
-    final static double DEPARTMENT_HEAD_COMP = 9500.0/26;
-    final static double DIRECTOR_COMP = 12000.0/26;
+    final static double MANAGER_COMP = 5000.0 / 26;
+    final static double DEPARTMENT_HEAD_COMP = 9500.0 / 26;
+    final static double DIRECTOR_COMP = 12000.0 / 26;
 
     /**
      * Constructor for Management class
      *
-     * @param profile profile for the employee
+     * @param profile      profile for the employee
      * @param annualSalary annual salary of employee
      * @param
      */
@@ -33,16 +33,16 @@ public class Management extends Fulltime{
      * Calculates payment of the employee
      */
     @Override
-    public void calculatePayment(){
-        switch(managementRole){
+    public void calculatePayment() {
+        switch (managementRole) {
             case MANAGER:
-                super.setPayment(super.getAnnualSalary()/26 + MANAGER_COMP);
+                super.setPayment(super.getAnnualSalary() / 26 + MANAGER_COMP);
                 break;
             case DEPARTMENT_HEAD:
-                super.setPayment(super.getAnnualSalary()/26 + DEPARTMENT_HEAD_COMP);
+                super.setPayment(super.getAnnualSalary() / 26 + DEPARTMENT_HEAD_COMP);
                 break;
             case DIRECTOR:
-                super.setPayment(super.getAnnualSalary()/26 + DIRECTOR_COMP);
+                super.setPayment(super.getAnnualSalary() / 26 + DIRECTOR_COMP);
                 break;
         }
     }
@@ -54,9 +54,9 @@ public class Management extends Fulltime{
      * @return
      */
     @Override
-    public String toString(){
+    public String toString() {
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
-        switch(managementRole){
+        switch (managementRole) {
             case MANAGER:
                 return super.toString() + "::Manager Compensation " + formatter.format(MANAGER_COMP);
             case DEPARTMENT_HEAD:
@@ -68,8 +68,8 @@ public class Management extends Fulltime{
     }
 
     @Override
-    public boolean equals(Object obj){
-        if(obj instanceof Management){
+    public boolean equals(Object obj) {
+        if (obj instanceof Management) {
             Management temp = (Management) obj;
             return (super.equals(temp)) && (managementRole == temp.managementRole);
         }

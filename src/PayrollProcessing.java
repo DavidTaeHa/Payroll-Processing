@@ -63,21 +63,27 @@ public class PayrollProcessing {
     private void addCommand(String name, String department, String dateHired, String pay, int role, Company company) {
         Date date = new Date(dateHired);
         if (!date.isValid()) {
-            throw new InputMismatchException(dateHired + " is not a valid date!");
+            System.out.println(dateHired + " is not a valid date!");
+            return;
         }
         if (!department.equals("CS") && !department.equals("ECE") && !department.equals("IT")) {
-            throw new InputMismatchException("Invalid department code!");
+            System.out.println("Invalid department code!");
+            return;
+        }
+        if (Double.parseDouble(pay) < 0) {
+            System.out.println("Salary or payrate cannot be negative.");
+            return;
         }
         Profile profile = new Profile(name, department, date);
         if (role == PARTTIME) {
             Parttime parttime = new Parttime(profile, Double.parseDouble(pay));
-            if(!company.add(parttime)){
+            if (!company.add(parttime)) {
                 System.out.println("Employee is already in the list");
                 return;
             }
         } else if (role == FULLTIME) {
             Fulltime fulltime = new Fulltime(profile, Double.parseDouble(pay));
-            if(!company.add(fulltime)){
+            if (!company.add(fulltime)) {
                 System.out.println("Employee is already in the list");
                 return;
             }
@@ -98,66 +104,73 @@ public class PayrollProcessing {
     private void addCommand(String name, String department, String dateHired, String salary, String managementRole, Company company) {
         Date date = new Date(dateHired);
         if (!date.isValid()) {
-            throw new InputMismatchException(dateHired + " is not a valid date!");
+            System.out.println(dateHired + " is not a valid date!");
+            return;
         }
         if (!department.equals("CS") && !department.equals("ECE") && !department.equals("IT")) {
-            throw new InputMismatchException("Invalid department code!");
+            System.out.println("Invalid department code!");
+            return;
         }
         if (Integer.parseInt(managementRole) > DIRECTOR || Integer.parseInt(managementRole) < MANAGER) {
-            throw new InputMismatchException("Invalid management code!");
+            System.out.println("Invalid management code!");
+            return;
+        }
+        if (Double.parseDouble(salary) < 0) {
+            System.out.println("Salary or payrate cannot be negative");
+            return;
         }
         Profile profile = new Profile(name, department, date);
         Management management = new Management(profile, Double.parseDouble(salary), Integer.parseInt(managementRole));
-        if(!company.add(management)){
+        if (!company.add(management)) {
             System.out.println("Employee is already in the list");
-        }
-        else{
+        } else {
             System.out.println("Employee added.");
         }
     }
 
     /**
      * Helper method to aid in removing an employee from the container
-     * @param name Name of the employee
+     *
+     * @param name       Name of the employee
      * @param department Department associated with the employee
-     * @param dateHired Date that the employee is hired
-     * @param company Container full of employees
+     * @param dateHired  Date that the employee is hired
+     * @param company    Container full of employees
      */
-    private void removeCommand(String name, String department, String dateHired, Company company){
+    private void removeCommand(String name, String department, String dateHired, Company company) {
         Date date = new Date(dateHired);
         Profile profile = new Profile(name, department, date);
         Employee employee = new Employee(profile);
-        if(!company.remove(employee)){
+        if (!company.remove(employee)) {
             System.out.println("Employee doesn’t exist.");
-        }
-        else{
+        } else {
             System.out.println("Employee removed.");
         }
     }
 
     /**
      * Helper method to aid in setting hours of parttime employees
-     * @param name Name of the employee
+     *
+     * @param name       Name of the employee
      * @param department Department associated with the employee
-     * @param dateHired Date tthat the employee is hired
-     * @param hours Hours that the employee has worked
-     * @param company Container full of employees
+     * @param dateHired  Date tthat the employee is hired
+     * @param hours      Hours that the employee has worked
+     * @param company    Container full of employees
      */
-    private void setHoursCommand(String name, String department, String dateHired, String hours, Company company){
-        if(Integer.parseInt(hours) < 0){
-            throw new InputMismatchException("Working hours cannot be negative.");
-        }
-        else if (Integer.parseInt(hours) > 100){
-            throw new InputMismatchException("Invalid Hours: over 100");
+    private void setHoursCommand(String name, String department, String dateHired, String hours, Company company) {
+        if (Integer.parseInt(hours) < 0) {
+            System.out.println("Working hours cannot be negative.");
+            return;
+        } else if (Integer.parseInt(hours) > 100) {
+            System.out.println("Invalid Hours: over 100");
+            return;
         }
         Date date = new Date(dateHired);
         Profile profile = new Profile(name, department, date);
         Parttime parttime = new Parttime(profile, 0.0);
         parttime.setHoursWorked(Integer.parseInt(hours));
-        if(!company.setHours(parttime)){
+        if (!company.setHours(parttime)) {
             System.out.println("Employee doesn’t exist.");
-        }
-        else{
+        } else {
             System.out.println("Working hours set.");
         }
     }
@@ -193,50 +206,62 @@ public class PayrollProcessing {
             String input = scan.nextLine();
             String[] parameters = input.split(" ");
             String command = parameters[FIRST_PARAMETER];
-            switch (command) {
-                case "AP":
-                    checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
-                    addCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER], parameters[FOURTH_PARAMETER],
-                            parameters[FIFTH_PARAMETER], PARTTIME, company);
-                    break;
-                case "AF":
-                    checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
-                    addCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER], parameters[FOURTH_PARAMETER],
-                            parameters[FIFTH_PARAMETER], FULLTIME, company);
-                    break;
-                case "AM":
-                    checkLength(LENGTH_REQUIREMENT_SIX, parameters.length);
-                    addCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER], parameters[FOURTH_PARAMETER],
-                            parameters[FIFTH_PARAMETER], parameters[SIXTH_PARAMETER], company);
-                    break;
-                case "R":
-                    checkLength(LENGTH_REQUIREMENT_FOUR, parameters.length);
-                    removeCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER],
-                            parameters[FOURTH_PARAMETER], company);
-                    break;
-                case "C":
-                    company.processPayments();
-                    System.out.println("Calculation of employee payments is done.");
-                    break;
-                case "S":
-                    checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
-                    setHoursCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER],
-                            parameters[FOURTH_PARAMETER], parameters[FIFTH_PARAMETER], company);
-                    break;
-                case "PA":
-                    printCommand(PRINT_ALL, company);
-                    break;
-                case "PH":
-                    printCommand(PRINT_DATE, company);
-                    break;
-                case "PD":
-                    printCommand(PRINT_DEPARTMENT, company);
-                    break;
-                case "Q":
-                    payrollProcessingSession = false;
-                default:
-
+            try {
+                switch (command) {
+                    case "AP":
+                        checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
+                        addCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER], parameters[FOURTH_PARAMETER],
+                                parameters[FIFTH_PARAMETER], PARTTIME, company);
+                        break;
+                    case "AF":
+                        checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
+                        addCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER], parameters[FOURTH_PARAMETER],
+                                parameters[FIFTH_PARAMETER], FULLTIME, company);
+                        break;
+                    case "AM":
+                        checkLength(LENGTH_REQUIREMENT_SIX, parameters.length);
+                        addCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER], parameters[FOURTH_PARAMETER],
+                                parameters[FIFTH_PARAMETER], parameters[SIXTH_PARAMETER], company);
+                        break;
+                    case "R":
+                        checkLength(LENGTH_REQUIREMENT_FOUR, parameters.length);
+                        removeCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER],
+                                parameters[FOURTH_PARAMETER], company);
+                        break;
+                    case "C":
+                        company.processPayments();
+                        System.out.println("Calculation of employee payments is done.");
+                        break;
+                    case "S":
+                        checkLength(LENGTH_REQUIREMENT_FIVE, parameters.length);
+                        setHoursCommand(parameters[SECOND_PARAMETER], parameters[THIRD_PARAMETER],
+                                parameters[FOURTH_PARAMETER], parameters[FIFTH_PARAMETER], company);
+                        break;
+                    case "PA":
+                        printCommand(PRINT_ALL, company);
+                        break;
+                    case "PH":
+                        printCommand(PRINT_DATE, company);
+                        break;
+                    case "PD":
+                        printCommand(PRINT_DEPARTMENT, company);
+                        break;
+                    case "Q":
+                        payrollProcessingSession = false;
+                        break;
+                    case "":
+                        break;
+                    default:
+                        System.out.println("Command '" + parameters[FIRST_PARAMETER] + "' not supported!");
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Invalid Command!");
+            } catch (NumberFormatException e){
+                System.out.println("Number is in the wrong format!");
+            } catch (InputMismatchException e){
+                System.out.println("Invalid Command!");
             }
+
         }
         System.out.println("Payroll Processing Session ended.");
         scan.close();

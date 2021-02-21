@@ -1,5 +1,5 @@
 /**
- *This class contains the main method that will run the project
+ * This class contains the main method that will run the project
  *
  * @author David Ha, Andrew McAvoy
  */

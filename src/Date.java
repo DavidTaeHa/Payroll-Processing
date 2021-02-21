@@ -7,7 +7,7 @@ import java.util.Calendar;
  *
  * @author David Ha, Andrew McAvoy
  */
-public class Date implements Comparable<Date>{
+public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
@@ -72,11 +72,10 @@ public class Date implements Comparable<Date>{
         int currentYear = calendar.get(Calendar.YEAR);
         int currentMonth = calendar.get(Calendar.MONTH) + 1;
         int currentDay = calendar.get(Calendar.DATE);
-        if((year == currentYear) && (month > currentMonth)){
+        if ((year == currentYear) && (month > currentMonth)) {
             return false;
-        }
-        else if((year == currentYear) && (currentMonth == month)){
-            if(day > currentDay){
+        } else if ((year == currentYear) && (currentMonth == month)) {
+            if (day > currentDay) {
                 return false;
             }
         }
@@ -155,23 +154,21 @@ public class Date implements Comparable<Date>{
 
     /**
      * Compares the value of two dates
+     *
      * @param date Date to be compared with the value that is calling this method
      * @return 1 0 or -1 depending on the comparison of the two dates
      */
     @Override
-    public int compareTo(Date date){
-        if(year < date.year) {
+    public int compareTo(Date date) {
+        if (year < date.year) {
             return -1;
-        }
-        else if(year == date.year){
-            if(month < date.month){
+        } else if (year == date.year) {
+            if (month < date.month) {
                 return -1;
-            }
-            else if(month == date.month){
-                if(day < date.day){
+            } else if (month == date.month) {
+                if (day < date.day) {
                     return -1;
-                }
-                else if(day == date.day){
+                } else if (day == date.day) {
                     return 0;
                 }
             }

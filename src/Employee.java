@@ -14,7 +14,7 @@ public class Employee {
      *
      * @param profile profile for the employee
      */
-    public Employee(Profile profile){
+    public Employee(Profile profile) {
         this.profile = profile;
         this.payment = 0;
     }
@@ -49,7 +49,7 @@ public class Employee {
     /**
      * Method for the subclasses to implement for calculating payment
      */
-    public void calculatePayment(){
+    public void calculatePayment() {
         //Overridden by subclasses
     }
 
@@ -60,7 +60,7 @@ public class Employee {
      * @return textual representation of this class
      */
     @Override
-    public String toString(){
+    public String toString() {
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
         return profile + "::" + "Payment " + formatter.format(payment);
     }
@@ -72,8 +72,8 @@ public class Employee {
      * @return true if equal; false if otherwise
      */
     @Override
-    public boolean equals(Object obj){
-        if(obj instanceof Employee){
+    public boolean equals(Object obj) {
+        if (obj instanceof Employee) {
             Employee temp = (Employee) obj;
             return ((profile.equals(temp.profile)) && (payment == temp.payment));
         }

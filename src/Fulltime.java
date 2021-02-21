@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
  *
  * @author David Ha, Andrew McAvoy
  */
-public class Fulltime extends Employee{
+public class Fulltime extends Employee {
     private double annualSalary;
 
     /**
@@ -31,8 +31,8 @@ public class Fulltime extends Employee{
      * Calculates payment of the employee
      */
     @Override
-    public void calculatePayment(){
-        super.setPayment(annualSalary/26.0);
+    public void calculatePayment() {
+        super.setPayment(annualSalary / 26.0);
     }
 
     /**
@@ -42,7 +42,7 @@ public class Fulltime extends Employee{
      * @return textual representation of this class
      */
     @Override
-    public String toString(){
+    public String toString() {
         DecimalFormat formatter = new DecimalFormat("$###,###,##0.00");
         return super.toString() + "::FULL TIME::" + "Annual Salary " + formatter.format(annualSalary);
     }
@@ -54,8 +54,8 @@ public class Fulltime extends Employee{
      * @return true if equal; false if otherwise
      */
     @Override
-    public boolean equals(Object obj){
-        if(obj instanceof Fulltime){
+    public boolean equals(Object obj) {
+        if (obj instanceof Fulltime) {
             Fulltime temp = (Fulltime) obj;
             return (super.equals(temp)) && (annualSalary == temp.annualSalary);
         }
