@@ -67,6 +67,12 @@ public class Management extends Fulltime {
         return "ERROR";
     }
 
+    /**
+     * Checks if two management employees are equal
+     *
+     * @param obj management employee to be compared
+     * @return true if equal; false if otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Management) {
