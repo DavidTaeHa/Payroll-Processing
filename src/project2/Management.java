@@ -21,9 +21,9 @@ public class Management extends Fulltime {
     /**
      * Constructor for Management class
      *
-     * @param profile      profile for the employee
-     * @param annualSalary annual salary of employee
-     * @param
+     * @param profile      Profile for the employee
+     * @param annualSalary Annual salary of employee
+     * @param managementRole Management role of employee
      */
     public Management(Profile profile, double annualSalary, int managementRole) {
         super(profile, annualSalary);
@@ -52,7 +52,7 @@ public class Management extends Fulltime {
      * Prints instance of this class in the following format
      * profile::payment::FULL TIME::annualSalary::Role Compensation
      *
-     * @return
+     * @return Textaul representation of an instance of management class
      */
     @Override
     public String toString() {
