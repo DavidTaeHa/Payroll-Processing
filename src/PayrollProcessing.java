@@ -264,7 +264,7 @@ public class PayrollProcessing {
             }
 
         }
-        System.out.println("Payroll Processing Session ended.");
+        System.out.println("Payroll Processing completed.");
         scan.close();
     }
 }
