@@ -14,7 +14,6 @@ public class Parttime extends Employee{
      * Constructor for Parttime class
      *
      * @param profile profile for the employee
-     * @param hourlyRate hourly pay of the employee
      */
     public Parttime(Profile profile, double hourlyRate) {
         super(profile);

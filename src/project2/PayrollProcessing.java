@@ -180,7 +180,6 @@ public class PayrollProcessing {
      * Helper method to aid in printing elements in the container
      *
      * @param printType Different ways to print the elements in the container
-     * @param company Container full of employees
      */
     public void printCommand(int printType, Company company) {
         if (company.getNumEmployee() == 0) {

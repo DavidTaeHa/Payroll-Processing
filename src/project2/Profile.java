@@ -11,11 +11,7 @@ public class Profile {
     private Date dateHired;
 
     /**
-     * Constructor for profile class
-     *
-     * @param name Name of Employee
-     * @param department Department of Employee
-     * @param dateHired Date hired of employee
+     * Constructor for profile
      */
     public Profile(String name, String department, Date dateHired) {
         this.name = name;

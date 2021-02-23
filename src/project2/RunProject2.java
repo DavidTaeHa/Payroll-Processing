@@ -6,10 +6,6 @@ package project2;
  * @author David Ha, Andrew McAvoy
  */
 public class RunProject2 {
-    /**
-     * Main method where program will run
-     * @param args
-     */
     public static void main(String[] args) {
         new PayrollProcessing().run();
     }
