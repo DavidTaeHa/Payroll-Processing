@@ -1,3 +1,4 @@
+package project2;
 import java.text.DecimalFormat;
 
 /**

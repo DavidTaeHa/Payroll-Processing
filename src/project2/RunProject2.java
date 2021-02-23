@@ -1,3 +1,5 @@
+package project2;
+
 /**
  * This class contains the main method that will run the project
  *

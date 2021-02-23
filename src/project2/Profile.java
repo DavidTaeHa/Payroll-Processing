@@ -1,3 +1,5 @@
+package project2;
+
 /**
  * This class defines the profile of an employee
  *
