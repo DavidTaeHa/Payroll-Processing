@@ -1,4 +1,3 @@
-package project2;
 
 import java.util.StringTokenizer;
 import java.util.Calendar;
